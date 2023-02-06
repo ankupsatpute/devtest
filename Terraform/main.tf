@@ -21,4 +21,7 @@ resource "aws_instance" "dev_machine" {
     Environment = "dev"
     Name = "${var.name}-server"
   }
+ provisioner "local-exec" {
+    command = "echo ${aws_instance.myec2.public_ip} >> /etc/ansible/hosts"
+  }
 }
